@@ -194,5 +194,65 @@ namespace TTFileMaker
         {
             set { _currentAircraft = value; }
         }
+
+        private string WriteLine(Aircraft plane)
+        {
+            string line = string.Empty;
+
+            line += plane.Callsign + ":";
+            line += plane.Type + ":";
+            line += plane.Engine + ":";
+            line += plane.Rules + ":";
+            line += plane.Dep + ":";
+            line += plane.Arr + ":";
+            line += plane.Cruise + ":";
+            line += plane.Route + ":";
+            line += plane.Remarks + ":";
+            line += plane.Code + ":";
+            line += plane.Mode + ":";
+            line += plane.Latitude + ":";
+            line += plane.Longitude + ":";
+            line += plane.Altitude + ":";
+            line += plane.Speed + ":";
+            line += plane.Heading + "\r\n";
+
+            return line;
+        }
+
+        public async Task<int> Write(Windows.Storage.StorageFile file)
+        {
+            string content = string.Empty;
+
+            foreach (Aircraft plane in Scenario)
+            {
+                content += WriteLine(plane);
+            }
+
+            if (file != null)
+            {
+                // Prevent updates to the remote version of the file until
+                // we finish making changes and call CompleteUpdatesAsync.
+                Windows.Storage.CachedFileManager.DeferUpdates(file);
+                // write to file
+                await Windows.Storage.FileIO.WriteTextAsync(file, content);
+                // Let Windows know that we're finished changing the file so
+                // the other app can update the remote version of the file.
+                // Completing updates may require Windows to ask for user input.
+                Windows.Storage.Provider.FileUpdateStatus status =
+                    await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
+                if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
+                {
+                    return 0;
+                }
+                else
+                {
+                    return 1;
+                }
+            }
+            else
+            {
+                return 2;
+            }
+        }
     }
 }

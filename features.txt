@@ -1,0 +1,34 @@
+TTFileMaker Change Log
+
+- denotes feature
+-- denotes implementation of the feature
+
+v1.0:
+-Allows for modification of existing .air files
+--Select a file path from opening page
+
+-Aircraft in file is displayed and editable
+--Databinding is two-way and working well
+
+-Aircraft properties displayed in an easy-to-read format
+--GUI is designed well, responsive to resizing, and human-friendly
+
+-New aircraft can be added and old ones removed
+--An add and remove button which edit the observablecollection<aircraft>
+
+v1.1:
+-Allows the creation of a new .air file
+--Select a folder and create a file from opening page to work on
+
+v1.2:
+-Select some pre-set features from a drop-down
+--Somehow bind the letters to combo-box items (ex: V in rules binds to 'VFR', I binds to 'IFR')
+
+-Logos appear next to aircraft name
+--Edit the datatemplate for listview by including the aircraft logo
+
+v2.0:
+-Allows selecting a gate instead of lat/long/alt/heading/speed
+--importation of an airport.dat file that contains specified info
+
+

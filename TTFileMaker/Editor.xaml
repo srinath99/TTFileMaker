@@ -57,7 +57,7 @@
                         <TextBox HorizontalAlignment="Right" x:Name="txtDepart" Text="{Binding Dep}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
-                        <TextBlock x:Name="txbArrive" Text="Arrive:" FontSize="16" Margin="10,10,25,10"/>
+                        <TextBlock x:Name="txbArrive" Text="Arrive:" FontSize="16" Margin="10,10,32,10"/>
                         <TextBox HorizontalAlignment="Right" x:Name="txtArrive" Text="{Binding Arr}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
