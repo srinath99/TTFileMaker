@@ -39,21 +39,5 @@ namespace TTFileMaker
             this.InitializeComponent();            
         }
 
-        private void Aircraft_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            var plane = (Aircraft)e.ClickedItem;
-
-            txtCallsign.Text = plane.Callsign;
-            txtType.Text = plane.Type;
-            txtRules.Text = plane.Rules;
-            txtDepart.Text = plane.Dep;
-            txtArrive.Text = plane.Arr;
-            txtEngine.Text = plane.Engine;
-            txtCruise.Text = plane.Cruise;
-            txtMode.Text = plane.Mode;
-            txtCode.Text = plane.Code;
-            txtRoute.Text = plane.Route;
-            txtRemarks.Text = plane.Remarks;
-        }
     }
 }

@@ -9,9 +9,13 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
+    <Page.Resources>
+        <CollectionViewSource x:Name="AircraftCollection" Source="{x:Bind viewModel.Scenario}" />
+    </Page.Resources>
+
     <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="150">
         <SplitView.Pane>
-            <ListView x:Name="Aircraft" IsItemClickEnabled="True" ItemClick="Aircraft_ItemClick" ItemsSource="{x:Bind viewModel.Scenario}" HorizontalAlignment="Left" Height="Auto" Margin="5,10,5,10" VerticalAlignment="Top" Width="Auto">
+            <ListView x:Name="Aircraft" IsItemClickEnabled="True" ItemsSource="{Binding Source={StaticResource AircraftCollection}}" HorizontalAlignment="Left" Height="Auto" Margin="5,10,5,10" VerticalAlignment="Top" Width="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Aircraft">
                         <TextBlock Text="{x:Bind Callsign}" Margin="10,5,10,5" FontSize="16" />
@@ -21,7 +25,7 @@
         </SplitView.Pane>
         
         <SplitView.Content>
-            <StackPanel>
+            <StackPanel DataContext="{Binding Source={StaticResource AircraftCollection}}">
                 <Grid Margin="10,10,10,10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -38,48 +42,48 @@
                     
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                         <TextBlock x:Name="txbCallsign" Text="Callsign:" FontSize="16" Margin="10,10,23,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtCallsign" Text="{x:Bind viewModel.Current.Callsign, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtCallsign" Text="{Binding Callsign}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                         <TextBlock x:Name="txbType" Text="A/C Type:" FontSize="16" Margin="10,10,10,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtType" Text="{x:Bind viewModel.Current.Type, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtType" Text="{Binding Type}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
                         <TextBlock x:Name="txbRules" Text="Flight Rules:" FontSize="16" Margin="10,10,10,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtRules" Text="{x:Bind viewModel.Current.Rules, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtRules" Text="{Binding Rules}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0">
                         <TextBlock x:Name="txbDepart" Text="Depart:" FontSize="16" Margin="10,10,29,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtDepart" Text="{x:Bind viewModel.Current.Dep, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtDepart" Text="{Binding Dep}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1">
                         <TextBlock x:Name="txbArrive" Text="Arrive:" FontSize="16" Margin="10,10,25,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtArrive" Text="{x:Bind viewModel.Current.Arr, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtArrive" Text="{Binding Arr}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
                         <TextBlock x:Name="txbEngine" Text="Engine:" FontSize="16" Margin="10,10,42,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtEngine" Text="{x:Bind viewModel.Current.Engine, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtEngine" Text="{Binding Engine}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0">
                         <TextBlock x:Name="txbCruise" Text="Cruise Alt:" FontSize="16" Margin="10,10,10,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtCruise" Text="{x:Bind viewModel.Current.Cruise, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtCruise" Text="{Binding Cruise}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
                         <TextBlock x:Name="txbMode" Text="Mode:" FontSize="16" Margin="10,10,32,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtMode" Text="{x:Bind viewModel.Current.Mode, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtMode" Text="{Binding Mode}" Margin="10,10,10,10"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="2">
                         <TextBlock x:Name="txbCode" Text="Code:" FontSize="16" Margin="10,10,54,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtCode" Text="{x:Bind viewModel.Current.Code, Mode=OneWay}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtCode" Text="{Binding Code}" Margin="10,10,10,10"/>
                     </StackPanel>
                 </Grid>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="txbRoute" Text="Route:" FontSize="16" Margin="10,10,46,10" />
-                    <TextBox x:Name="txtRoute" Text="{x:Bind viewModel.Current.Route, Mode=OneWay}" Margin="10,10,10,10" MaxWidth="750" TextWrapping="Wrap" Height="50"/>
+                    <TextBox x:Name="txtRoute" Text="{Binding Route}" Margin="10,10,10,10" MaxWidth="750" MinWidth="500" TextWrapping="Wrap" Height="50"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock x:Name="txbRemarks" Text="Remarks:" FontSize="16" Margin="10,10,28,10" />
-                    <TextBox x:Name="txtRemarks" Text="{x:Bind viewModel.Current.Remarks, Mode=OneWay}" Margin="10,10,10,10" MaxWidth="750" TextWrapping="Wrap" Height="50"/>
+                    <TextBox x:Name="txtRemarks" Text="{Binding Remarks}" Margin="10,10,10,10" MaxWidth="750" MinWidth="500" TextWrapping="Wrap" Height="50"/>
                 </StackPanel>
             </StackPanel>
         </SplitView.Content>
