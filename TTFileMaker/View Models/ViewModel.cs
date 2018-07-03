@@ -11,7 +11,6 @@ namespace TTFileMaker.View_Models
     class ViewModel
     {
         public ObservableCollection<Aircraft> Scenario = new ObservableCollection<Aircraft>();
-
         private async void generateScenario(Windows.Storage.StorageFile file)
         {
             string raw = await Read(file);
@@ -44,6 +43,7 @@ namespace TTFileMaker.View_Models
                         Speed = data[14],
                         Heading = data[15]
                     };
+                    
 
                     Scenario.Add(plane);
                 }
@@ -57,7 +57,20 @@ namespace TTFileMaker.View_Models
 
         public ViewModel(Windows.Storage.StorageFile file)
         {
-            generateScenario(file);
+            generateScenario(file);      
+        }
+
+        private Aircraft _selectedItem;
+        public Aircraft SelectedItem
+        {
+            get
+            {
+                return _selectedItem;
+            }
+            set
+            {
+                _selectedItem = value;
+            }
         }
 
         private string WriteLine(Aircraft plane)
