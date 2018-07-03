@@ -35,98 +35,160 @@ namespace TTFileMaker.Models
             {
                 _callsign = value;
                 OnPropertyChanged("Callsign");
-                
             }
         }
 
         public string Type
         {
             get { return _type; }
-            set { _type = value; }
+            set
+            {
+                _type = value;
+                OnPropertyChanged("Type");
+            }
         }
 
         public string Engine
         {
             get { return _engine; }
-            set { _engine = value; }
+            set
+            {
+                _engine = value;
+                OnPropertyChanged("Engine");
+
+            }
         }
 
         public string Rules
         {
             get { return _rules; }
-            set { _rules = value; }
+            set
+            {
+                _rules = value;
+                OnPropertyChanged("Rules");
+            }
         }
 
         public string Dep
         {
             get { return _dep; }
-            set { _dep = value; }
+            set
+            {
+                _dep = value;
+                OnPropertyChanged("Dep");
+            }
         }
 
         public string Arr
         {
             get { return _arr; }
-            set { _arr = value; }
+            set
+            {
+                _arr = value;
+                OnPropertyChanged("Arr");
+            }
         }
 
         public string Cruise
         {
             get { return _cruise; }
-            set { _cruise = value; }
+            set
+            {
+                _cruise = value;
+                OnPropertyChanged("Cruise");
+
+            }
         }
 
         public string Route
         {
             get { return _route; }
-            set { _route = value; }
+            set
+            {
+                _route = value;
+                OnPropertyChanged("Route");
+
+            }
         }
 
         public string Remarks
         {
             get { return _remarks; }
-            set { _remarks = value; }
+            set
+            {
+                _remarks = value;
+                OnPropertyChanged("Remarks");
+            }
         }
 
         public string Code
         {
             get { return _code; }
-            set { _code = value; }
+            set
+            {
+                _code = value;
+                OnPropertyChanged("Code");
+            }
         }
 
         public string Mode
         {
             get { return _mode; }
-            set { _mode = value; }
+            set
+            {
+                _mode = value;
+                OnPropertyChanged("Mode");
+            }
         }
 
         public string Latitude
         {
             get { return _latitude; }
-            set { _latitude = value; }
+            set
+            {
+                _latitude = value;
+                OnPropertyChanged("Latitude");
+            }
         }
 
         public string Longitude
         {
             get { return _longitude; }
-            set { _longitude = value; }
+            set
+            {
+                _longitude = value;
+                OnPropertyChanged("Longitude");
+            }
         }
 
         public string Altitude
         {
             get { return _altitude; }
-            set { _altitude = value; }
+            set
+            {
+                _altitude = value;
+                OnPropertyChanged("Altitude");
+            }
         }
 
         public string Speed
         {
             get { return _speed; }
-            set { _speed = value; }
+            set
+            {
+                _speed = value;
+                OnPropertyChanged("Speed");
+            }
         }
 
         public string Heading
         {
             get { return _heading; }
-            set { _heading = value; }
+            set
+            {
+                _heading = value;
+                OnPropertyChanged("Heading");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

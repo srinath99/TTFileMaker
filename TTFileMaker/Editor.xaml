@@ -19,7 +19,7 @@
             <ListView x:Name="Aircraft" IsItemClickEnabled="True" ItemsSource="{Binding Source={StaticResource AircraftCollection}}" HorizontalAlignment="Left" Height="Auto" Margin="5,10,5,10" VerticalAlignment="Top" Width="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Aircraft">
-                        <TextBlock Text="{x:Bind Callsign}" Margin="10,5,10,5" FontSize="16" />
+                        <TextBlock Text="{Binding Callsign}" Margin="10,5,10,5" FontSize="16" />
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
@@ -43,7 +43,7 @@
                     
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                         <TextBlock x:Name="txbCallsign" Text="Callsign:" FontSize="16" Margin="10,10,23,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtCallsign" Text="{Binding Callsign, Mode=TwoWay}" Margin="10,10,10,10" />
+                        <TextBox HorizontalAlignment="Right" x:Name="txtCallsign" Text="{Binding Callsign, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="10,10,10,10" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                         <TextBlock x:Name="txbType" Text="A/C Type:" FontSize="16" Margin="10,10,10,10"/>
