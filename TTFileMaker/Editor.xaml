@@ -42,7 +42,7 @@
                     
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
                         <TextBlock x:Name="txbCallsign" Text="Callsign:" FontSize="16" Margin="10,10,23,10"/>
-                        <TextBox HorizontalAlignment="Right" x:Name="txtCallsign" Text="{Binding Callsign}" Margin="10,10,10,10"/>
+                        <TextBox HorizontalAlignment="Right" x:Name="txtCallsign" Text="{Binding Callsign, Mode=TwoWay}" Margin="10,10,10,10" />
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
                         <TextBlock x:Name="txbType" Text="A/C Type:" FontSize="16" Margin="10,10,10,10"/>

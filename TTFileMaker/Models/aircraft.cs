@@ -34,7 +34,7 @@ namespace TTFileMaker
             set
             {
                 _callsign = value;
-                OnPropertyChanged(nameof(Callsign));
+                OnPropertyChanged("Callsign");
                 
             }
         }
