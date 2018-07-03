@@ -26,8 +26,9 @@ namespace TTFileMaker
 
         private Windows.Storage.StorageFile _file;
         ViewModel viewModel;
+        
 
-
+ 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
@@ -50,5 +51,13 @@ namespace TTFileMaker
             this.InitializeComponent();            
         }
 
+        private void Aircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            placeholderText.Visibility = Visibility.Collapsed;
+            aircraftGrid.Visibility = Visibility.Visible;
+
+        }
     }
+
+
 }
