@@ -15,7 +15,6 @@ namespace TTFileMaker.View_Models
         private async void generateScenario(Windows.Storage.StorageFile file)
         {
             string raw = await Read(file);
-
             string[] splitter = new string[] { "\r\n" };
             string[] planes = raw.Split(splitter, StringSplitOptions.None);
 
@@ -38,8 +37,7 @@ namespace TTFileMaker.View_Models
                         Remarks = data[8],
                         Code = data[9],
                         Mode = data[10],
-                        Latitude = data[11],
-                        Longitude = data[12],
+                        Location = data[11] + ", " + data[12],
                         Altitude = data[13],
                         Speed = data[14],
                         Heading = data[15]
@@ -60,9 +58,12 @@ namespace TTFileMaker.View_Models
             generateScenario(file);
         }
 
+
         private string WriteLine(Aircraft plane)
         {
             string line = string.Empty;
+            string[] location = plane.Location.Split(new string[] { ", " }, StringSplitOptions.None);
+
 
             line += plane.Callsign + ":";
             line += plane.Type + ":";
@@ -75,8 +76,8 @@ namespace TTFileMaker.View_Models
             line += plane.Remarks + ":";
             line += plane.Code + ":";
             line += plane.Mode + ":";
-            line += plane.Latitude + ":";
-            line += plane.Longitude + ":";
+            line += location[0] + ":";
+            line += location[1] + ":";
             line += plane.Altitude + ":";
             line += plane.Speed + ":";
             line += plane.Heading + "\r\n";

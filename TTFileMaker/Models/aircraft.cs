@@ -22,8 +22,7 @@ namespace TTFileMaker.Models
         private string _remarks;
         private string _code;
         private string _mode;
-        private string _latitude;
-        private string _longitude;
+        private string _location;
         private string _altitude;
         private string _speed;
         private string _heading;
@@ -141,23 +140,13 @@ namespace TTFileMaker.Models
             }
         }
 
-        public string Latitude
+        public string Location
         {
-            get { return _latitude; }
+            get { return _location; }
             set
             {
-                _latitude = value;
-                OnPropertyChanged("Latitude");
-            }
-        }
-
-        public string Longitude
-        {
-            get { return _longitude; }
-            set
-            {
-                _longitude = value;
-                OnPropertyChanged("Longitude");
+                _location = value;
+                OnPropertyChanged("Location");
             }
         }
 
