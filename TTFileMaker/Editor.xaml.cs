@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using TTFileMaker.View_Models;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,14 +24,24 @@ namespace TTFileMaker
     public sealed partial class Editor : Page
     {
 
-        private string _file;
+        private Windows.Storage.StorageFile _file;
         ViewModel viewModel;
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _file = (string) e.Parameter;
-            viewModel = new ViewModel(_file);
+            if (e.Parameter != null)
+            {
+                _file = (Windows.Storage.StorageFile)e.Parameter;
+                viewModel = new ViewModel(_file);
+            }
+            else
+            {
+                viewModel = new ViewModel();
+            }
+
+            
+            
             this.DataContext = viewModel;
         }
 
