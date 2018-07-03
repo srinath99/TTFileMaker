@@ -24,16 +24,10 @@ namespace TTFileMaker
     public sealed partial class MainPage : Page
     {
         Windows.Storage.StorageFile file;
-        Windows.Storage.StorageFolder folder;
 
         public MainPage()
         {
             this.InitializeComponent();
-        }
-
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private async void btnBrowse_Click(object sender, RoutedEventArgs e)
@@ -47,40 +41,32 @@ namespace TTFileMaker
 
             if (file != null)
             {
-                // Application now has read/write access to the picked file
                 this.txtFile.Text = file.Name;                
             }
 
 
         }
 
-
-        private async void btnFolder_Click(object sender, RoutedEventArgs e)
+        private void btnGo_Click(object sender, RoutedEventArgs e)
         {
-            var picker = new Windows.Storage.Pickers.FolderPicker();
-            picker.ViewMode = Windows.Storage.Pickers.PickerViewMode.List;
-            picker.SuggestedStartLocation = Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
 
-            folder = await picker.PickSingleFolderAsync();
-        }
-
-        private async void btnGo_Click(object sender, RoutedEventArgs e)
-        {
-            if (txtChosenFolder.Text != "" ^ txtFile.Text != "")
+            if ((bool)rbnNew.IsChecked)
             {
-                if (folder == null)
-                {
-                    folder = await file.GetParentAsync();
-                }
-
-                if (file == null)
-                {
-                    file = await folder.CreateFileAsync(txtChosenFolder.Text + ".air", Windows.Storage.CreationCollisionOption.ReplaceExisting);
-                }
-
-                string rawFile = await Windows.Storage.FileIO.ReadTextAsync(file);
-                this.Frame.Navigate(typeof(Editor), rawFile);
+                //Navigate to the editor page with an empty file
+                Frame.Navigate(typeof(Editor), null);
             }
+            else if ((bool)rbnExisting.IsChecked)
+            {
+                //Navigate to the editor page with the existing file
+                Frame.Navigate(typeof(Editor), file);
+            }
+            
         }
+
+        private void rbnNew_Checked(object sender, RoutedEventArgs e)
+        {
+            txtFile.Text = string.Empty;
+        }
+
     }
 }
