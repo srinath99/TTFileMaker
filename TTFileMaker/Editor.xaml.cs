@@ -57,6 +57,11 @@ namespace TTFileMaker
             aircraftGrid.Visibility = Visibility.Visible;
 
         }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Write();
+        }
     }
 
 

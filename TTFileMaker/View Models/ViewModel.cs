@@ -11,6 +11,8 @@ namespace TTFileMaker.View_Models
     class ViewModel
     {
         public ObservableCollection<Aircraft> Scenario = new ObservableCollection<Aircraft>();
+        private Windows.Storage.StorageFile saveFile = null;
+
         private async void generateScenario(Windows.Storage.StorageFile file)
         {
             string raw = await Read(file);
@@ -105,39 +107,38 @@ namespace TTFileMaker.View_Models
             return rawFile;
         }
 
-        public async Task<int> Write(Windows.Storage.StorageFile file)
+        public async void Write()
         {
             string content = string.Empty;
+
+            if (saveFile == null)
+            {
+                var savePicker = new Windows.Storage.Pickers.FileSavePicker();
+                savePicker.SuggestedStartLocation =
+                    Windows.Storage.Pickers.PickerLocationId.DocumentsLibrary;
+                savePicker.FileTypeChoices.Add("TWR Trainer Aircraft", new List<string>() { ".air" });
+                savePicker.SuggestedFileName = "Scenario";
+
+                saveFile = await savePicker.PickSaveFileAsync();
+            }
 
             foreach (Aircraft plane in Scenario)
             {
                 content += WriteLine(plane);
             }
 
-            if (file != null)
+            if (saveFile != null)
             {
                 // Prevent updates to the remote version of the file until
                 // we finish making changes and call CompleteUpdatesAsync.
-                Windows.Storage.CachedFileManager.DeferUpdates(file);
+                Windows.Storage.CachedFileManager.DeferUpdates(saveFile);
                 // write to file
-                await Windows.Storage.FileIO.WriteTextAsync(file, content);
+                await Windows.Storage.FileIO.WriteTextAsync(saveFile, content);
                 // Let Windows know that we're finished changing the file so
                 // the other app can update the remote version of the file.
                 // Completing updates may require Windows to ask for user input.
                 Windows.Storage.Provider.FileUpdateStatus status =
-                    await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(file);
-                if (status == Windows.Storage.Provider.FileUpdateStatus.Complete)
-                {
-                    return 0;
-                }
-                else
-                {
-                    return 1;
-                }
-            }
-            else
-            {
-                return 2;
+                    await Windows.Storage.CachedFileManager.CompleteUpdatesAsync(saveFile);
             }
         }
     }

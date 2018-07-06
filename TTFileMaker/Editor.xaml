@@ -16,7 +16,7 @@
 
     <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="150">
         <SplitView.Pane>
-            <ListView x:Name="Aircraft" IsItemClickEnabled="True" ItemsSource="{Binding Source={StaticResource AircraftCollection}}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectionChanged="Aircraft_SelectionChanged"  HorizontalAlignment="Left" Height="Auto" Margin="5,10,5,10" VerticalAlignment="Top" Width="Auto">
+            <ListView x:Name="Aircraft" IsItemClickEnabled="True" ItemsSource="{Binding Source={StaticResource AircraftCollection}}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}" SelectionChanged="Aircraft_SelectionChanged"  HorizontalAlignment="Left" Height="Auto" Margin="10,10,10,10" VerticalAlignment="Top" Width="Auto">
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="data:Aircraft">
                         <TextBlock Text="{Binding Callsign}" Margin="10,5,10,5" FontSize="16" />
@@ -81,17 +81,17 @@
                         </StackPanel>
                         <Button x:Name="btnAdd" Grid.Column="3" Grid.Row="0" Width="100" Height="33" Content="Add" Margin="10,10,10,10"/>
                         <Button x:Name="btnRemove" Grid.Column="3" Grid.Row="1" Width="100" Height="33" Content="Remove" Margin="10,10,10,10"/>
-                        <Button x:Name="btnClear" Grid.Column="3" Grid.Row="2" Width="100" Height="33" Content="Clear" Margin="10,10,10,10"/>
+                        <Button x:Name="btnSave" Click="btnSave_Click" Grid.Column="3" Grid.Row="2" Width="100" Height="33" Content="Save" Margin="10,10,10,10"/>
                     </Grid>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="txbRoute" Text="Route:" FontSize="16" Margin="20,10,36,10" />
-                        <TextBox x:Name="txtRoute" Text="{Binding Route}" Margin="10,10,10,10" MaxWidth="750" MinWidth="600" TextWrapping="Wrap" Height="50"/>
+                        <TextBox x:Name="txtRoute" Text="{Binding Route}" Margin="10,10,10,10" Width="600" TextWrapping="Wrap" Height="50"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock x:Name="txbRemarks" Text="Remarks:" FontSize="16" Margin="20,10,18,10" />
-                        <TextBox x:Name="txtRemarks" Text="{Binding Remarks}" Margin="10,10,10,10" MaxWidth="750" MinWidth="600" TextWrapping="Wrap" Height="50"/>
+                        <TextBox x:Name="txtRemarks" Text="{Binding Remarks}" Margin="10,10,10,10" Width="600" TextWrapping="Wrap" Height="50"/>
                     </StackPanel>
-                    <Grid>
+                    <Grid Margin="0,10,0,10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
