@@ -187,5 +187,33 @@ namespace TTFileMaker.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public Aircraft(string Callsign)
+        {
+            this.Callsign = Callsign;
+        }
+
+        public Aircraft()
+        {
+
+        }
+
+        public void Clear()
+        {
+            Callsign = "";
+            Type = "";
+            Engine = "";
+            Rules = "";
+            Dep = "";
+            Arr = "";
+            Cruise = "";
+            Route = "";
+            Remarks = "";
+            Code = "";
+            Mode = "";
+            Location = "";
+            Altitude = "";
+            Speed = "";
+            Heading = "";
+        }
     }
 }

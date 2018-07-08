@@ -51,16 +51,61 @@ namespace TTFileMaker
             this.InitializeComponent();            
         }
 
-        private void Aircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            placeholderText.Visibility = Visibility.Collapsed;
-            aircraftGrid.Visibility = Visibility.Visible;
-
-        }
-
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
             viewModel.Write();
+            txbSave.Text = "Last Saved at " + DateTime.Now.ToString("hh:mm");
+        }
+
+        private void btnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            int index = Aircraft.SelectedIndex;
+
+            viewModel.Scenario.Remove(viewModel.SelectedItem);
+
+            if (index > 0)
+            {
+                Aircraft.SelectedIndex = index - 1; ;
+            }
+            else if (viewModel.Scenario.Count > 0)
+            {
+                Aircraft.SelectedIndex = 0;
+            }
+            else
+            {
+                //add a new blank aircraft and select that
+                Add();
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            Add();
+        }
+
+        private void Add()
+        {
+            viewModel.Scenario.Add(new Models.Aircraft("<New>"));
+
+            Aircraft.SelectedIndex = viewModel.Scenario.Count - 1;
+        }
+
+        private void Aircraft_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            placeholderText.Visibility = Visibility.Collapsed;
+            aircraftGrid.Visibility = Visibility.Visible;
+        }
+
+        private void btnSaveAs_Click(object sender, RoutedEventArgs e)
+        {
+            viewModel.Write(22);
+            txbSave.Text = "Last Saved at " + DateTime.Now.ToString("hh:mm");
+        }
+
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            Models.Aircraft plane = (Models.Aircraft)Aircraft.SelectedItem;
+            plane.Clear();
         }
     }
 

@@ -25,7 +25,7 @@ namespace TTFileMaker.View_Models
 
                 if (data[0] != "")
                 {
-                    Aircraft plane = new Aircraft
+                    Aircraft plane = new Aircraft()
                     {
                         Callsign = data[0],
                         Type = data[1],
@@ -52,7 +52,7 @@ namespace TTFileMaker.View_Models
 
         public ViewModel()
         {
-
+            Scenario.Add(new Aircraft("<New>"));
         }
 
         public ViewModel(Windows.Storage.StorageFile file)
@@ -60,7 +60,7 @@ namespace TTFileMaker.View_Models
             generateScenario(file);      
         }
 
-        private Aircraft _selectedItem;
+        private Aircraft _selectedItem = null;
         public Aircraft SelectedItem
         {
             get
@@ -77,8 +77,12 @@ namespace TTFileMaker.View_Models
         private string WriteLine(Aircraft plane)
         {
             string line = string.Empty;
-            string[] location = plane.Location.Split(new string[] { ", " }, StringSplitOptions.None);
+            string[] location = { "", "" };
 
+            if (plane.Location != null || plane.Location == "")
+            {
+                location = plane.Location.Split(new string[] { ", " }, StringSplitOptions.None);
+            }
 
             line += plane.Callsign + ":";
             line += plane.Type + ":";
@@ -107,11 +111,11 @@ namespace TTFileMaker.View_Models
             return rawFile;
         }
 
-        public async void Write()
+        public async void Write(int param = 0)
         {
             string content = string.Empty;
 
-            if (saveFile == null)
+            if (saveFile == null || param != 0)
             {
                 var savePicker = new Windows.Storage.Pickers.FileSavePicker();
                 savePicker.SuggestedStartLocation =
