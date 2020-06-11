@@ -28,6 +28,6 @@
             <RadioButton x:Name="rbnNew" Checked="rbnNew_Checked" GroupName="Files" HorizontalAlignment="Left" FontSize="24" Padding="15,0,0,0" Margin="0,0,0,10" Content="Create a new file"/>
         </StackPanel>
         <Button x:Name="btnGo" Content="Start" HorizontalAlignment="Center" FontSize="36" Height="61" Width="145" Grid.Row="3" Margin="0,10,0,0" Click="btnGo_Click"/>
-        <TextBlock x:Name="txtCopyright" HorizontalAlignment="Center" TextWrapping="Wrap" Text="© 2018 Oakland ARTCC on VATSIM. Version 1.0. Created by Srinath Nandakumar" VerticalAlignment="Bottom" FontSize="12" Margin="10,10,10,15" Grid.Row="5"/>
+        <TextBlock x:Name="txtCopyright" HorizontalAlignment="Center" TextWrapping="Wrap" Text="© 2018 Oakland ARTCC on VATSIM. Version 1.1. Created by Srinath Nandakumar" VerticalAlignment="Bottom" FontSize="12" Margin="10,10,10,15" Grid.Row="5"/>
     </Grid>
 </Page>
