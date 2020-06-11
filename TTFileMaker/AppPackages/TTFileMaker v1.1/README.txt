@@ -16,6 +16,7 @@ SYSTEM REQUIREMENTS:
 -If you can view this text file, you can run my app
 
 INSTALLATION:
+-Navigate to TTFileMaker/AppPackages/TTFileMaker v1.1/
 -Right click "Add-AppDevPackage"
 -Select "Run with PowerShell"
 -Follow the instructions to install
